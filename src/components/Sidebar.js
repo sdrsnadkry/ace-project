@@ -12,7 +12,7 @@ export default function Sidebar() {
     return (
       <div className="h-full bg-green-600 w-[300px] px-2 py-2">
         <div className="flex items-center justify-between">
-          <h1>{name}</h1>
+          <h1>Logo</h1>
           <button onClick={toggleSidebar}>Close</button>
         </div>
         <ul>
