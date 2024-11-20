@@ -1,32 +1,29 @@
 "use client";
-import { useState } from "react";
 
-export default function Sidebar() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-
-  function toggleSidebar(){
-    setSidebarOpen(!sidebarOpen)
-  }
-
-  if (sidebarOpen) {
-    return (
-      <div className="h-full bg-green-600 w-[300px] px-2 py-2">
-        <div className="flex items-center justify-between">
-          <h1>Logo</h1>
-          <button onClick={toggleSidebar}>Close</button>
-        </div>
-        <ul>
-          <li className="py-2">Home Page</li>
-          <li className="py-2">Projects</li>
-          <li className="py-2">Course</li>
-          <li className="py-2">FAQ</li>
-          <li className="py-2">Contact</li>
-        </ul>
-      </div>
-    );
-  }else{
-    return <div>
-      <button onClick={toggleSidebar}>Open</button>
+function Sidebar(props) {
+  return (
+    <div
+      className={`bg-gray-800 text-white w-64 fixed h-full transition-transform z-10 ${
+        props.sidebarOpen ? "translate-x-0" : "-translate-x-64"
+      }`}
+    >
+      <button
+        className="p-4 text-white"
+        onClick={() => props.setSidebarOpen(!props.sidebarOpen)}
+      >
+        {props.sidebarOpen ? "Close" : "Open"} Menu
+      </button>
+      <nav className="p-4 space-y-4">
+        <a href="/" className="block">
+          Home
+        </a>
+        <a href="/home" className="block">
+          Dashboard
+        </a>
+        {/* Add more links as needed */}
+      </nav>
     </div>
-  }
+  );
 }
+
+export default Sidebar;
