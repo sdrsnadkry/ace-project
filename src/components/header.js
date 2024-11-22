@@ -2,6 +2,7 @@ import { useState } from "react";
 
 function Header(props) {
   const [inputValue, setInputValue]  = useState("Apple")
+  
   return (
     <header className="bg-blue-500 text-white p-4 flex justify-between items-center sticky top-0 z-20">
       <div className="text-md font-bold">
