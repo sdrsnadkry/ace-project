@@ -9,13 +9,19 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+
+  return (
+    <html lang="en">
       <body>
         <div className="flex h-screen">
           {/* Sidebar */}
 
-          <SidebarABcd 
-          sidebarOpen={sidebarOpen}
-          setSidebarOpen={setSidebarOpen}
+          <SidebarABcd
+            sidebarOpen={sidebarOpen}
+            setSidebarOpen={setSidebarOpen}
           />
 
           {/* Main Content */}
