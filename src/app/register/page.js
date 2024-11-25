@@ -1,6 +1,11 @@
 "use client";
 import countries from "@/data/country";
 import { useState } from "react";
+import Country from "./country";
+
+//hooks
+//useState
+//useEffect
 
 function Register() {
   const [name, setName] = useState("");
@@ -69,26 +74,13 @@ function Register() {
               className="border mt-2 w-full border-slate-800 p-2"
             />
           </div>
-          <div className="my-5">
-            <label htmlFor="" className="block">
-              Country
-            </label>
-            <select
-              name=""
-              id=""
-              required
-              value={country}
-              onChange={(event) => {
-                setCountry(event.target.value);
-              }}
-              className="border mt-2 w-full border-slate-800 p-2"
-            >
-              {countries.map((country) => (
-                <option value={country.code}>{country.name}</option>
-              ))}
-              {/* <option value="India">India</option> */}
-            </select>
-          </div>
+          <Country
+            name={name}
+          country={country}
+          setCountry={setCountry}
+          setName={setName}
+          />
+         
           <div className="my-5">
             <label htmlFor="" className="block mb-3">
               Gender
