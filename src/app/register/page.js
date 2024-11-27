@@ -2,6 +2,8 @@
 import countries from "@/data/country";
 import { useState } from "react";
 import Country from "./country";
+import AsyncJavaScript from "./asyncJavaScript";
+import AsyncAwait from "./asyncAwait";
 
 //hooks
 //useState
@@ -76,11 +78,11 @@ function Register() {
           </div>
           <Country
             name={name}
-          country={country}
-          setCountry={setCountry}
-          setName={setName}
+            country={country}
+            setCountry={setCountry}
+            setName={setName}
           />
-         
+
           <div className="my-5">
             <label htmlFor="" className="block mb-3">
               Gender
@@ -148,6 +150,8 @@ function Register() {
             Submit
           </button>
         </form>
+
+        <AsyncAwait />
       </div>
     </div>
   );

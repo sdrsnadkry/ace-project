@@ -1,14 +1,21 @@
-import countries from "@/data/country";
-
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Country(props) {
+  const [countryList, setCountryList] = useState([]);
+
+  const fetCountryList = async () => {
+    try {
+      const response = await fetch("https://countriesnow.space/api/v0.1/countries");
+      const json = await response.json();
+      setCountryList(json?.data || []);
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
   useEffect(() => {
-    console.log("hello", props);
-    if (props.country) {
-      props.setName("Hello from " + props.country);
-    } 
-  }, [props.country]);
+    fetCountryList();
+  }, []);
 
   return (
     <div className="my-5">
@@ -25,9 +32,9 @@ function Country(props) {
         }}
         className="border mt-2 w-full border-slate-800 p-2"
       >
-        {countries.map((country) => (
-          <option key={country.code} value={country.name}>
-            {country.name}
+        {countryList.map((country) => (
+          <option key={country.iso3} value={country.country}>
+            {country.country}
           </option>
         ))}
         {/* <option value="India">India</option> */}
