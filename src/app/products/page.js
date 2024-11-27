@@ -3,55 +3,54 @@
 import Image from "next/image";
 // https://dummyjson.com/products
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Product from "./_components/product";
 
-const PROD = [
-  {
-    id: 1,
-    title: "Essence Mascara Lash Princess",
-    price: 10,
-    thumbnail:
-      "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
-  },
-  {
-    id: 2,
-    title: "Eyeshadow Palette with Mirror 2",
-    price: 20,
-    thumbnail:
-      "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
-  },
-  {
-    id: 3,
-    title: "Eyeshadow Palette with Mirror 3",
-    price: 30,
-    thumbnail:
-      "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
-  },
-  {
-    id: 4,
-    title: "Eyeshadow Palette with Mirror 4",
-    price: 40,
-    thumbnail:
-      "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
-  },
-  {
-    id: 5,
-    title: "Eyeshadow Palette with Mirror 5",
-    price: 50,
-    thumbnail:
-      "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
-  },
-];
-
 function Products() {
-  const [productList, setProductList] = useState(PROD);
+  const [productList, setProductList] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+
+  const fetchProduct = async () => {
+    try {
+      const response = await fetch("https://dummyjson.com/products");
+      const resJson = await response.json();
+      setProductList(resJson?.products || []);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    fetchProduct();
+  }, []);
+
+  const filteredProduct = productList.filter((prod) =>
+    prod.title?.toLowerCase()?.includes(inputValue.toLowerCase())
+  );
 
   return (
-    <div className="grid grid-cols-3 gap-5">
-      {productList.map((product) => (
-        <Product key={product.id} image={product.thumbnail} title={product.title} price={product.price} />
-      ))}
+    <div>
+      <h1 className="text-center text-2xl">Products List</h1>
+
+      <div className="flex items-center justify-center">
+        <input
+          type="text"
+          placeholder="Search"
+          value={inputValue}
+          onChange={(event) => {
+            setInputValue(event.target.value);
+          }}
+          className="my-4 border border-slate-500"
+        />
+      </div>
+      <div className="grid grid-cols-3 gap-5">
+        {filteredProduct?.map((product) => (
+          <Product
+            key={product.id}
+            image={product.thumbnail}
+            title={product.title}
+            price={product.price}
+          />
+        ))}
+      </div>
     </div>
   );
 }
