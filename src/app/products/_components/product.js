@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 function Product(props) {
   return (
-    <div className="border border-slate-500 rounded-md">
+    <Link href={"/products/" + props.id} className="border rounded-md border-slate-500">
       {/* image */}
       <Image
         width={200}
@@ -17,7 +18,7 @@ function Product(props) {
       <p className="text-center">$ {props.price}</p>
       {/* ratings */}
       <p className="text-center">4.5/5</p>
-    </div>
+    </Link>
   );
 }
 

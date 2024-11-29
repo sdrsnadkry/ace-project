@@ -1,10 +1,8 @@
 "use client";
 
-import Image from "next/image";
-// https://dummyjson.com/products
-
 import { useEffect, useState } from "react";
 import Product from "./_components/product";
+import Loader from "./_components/loader";
 
 function Products() {
   const [productList, setProductList] = useState([]);
@@ -26,9 +24,13 @@ function Products() {
     prod.title?.toLowerCase()?.includes(inputValue.toLowerCase())
   );
 
+  console.log(filteredProduct);
+
   return (
     <div>
-      <h1 className="text-center text-2xl">Products List</h1>
+      <h1 className="text-2xl text-center">Products List</h1>
+
+      <p></p>
 
       <div className="flex items-center justify-center">
         <input
@@ -41,6 +43,8 @@ function Products() {
           className="my-4 border border-slate-500"
         />
       </div>
+      {filteredProduct.length === 0 && <Loader />}
+
       <div className="grid grid-cols-3 gap-5">
         {filteredProduct?.map((product) => (
           <Product
@@ -48,6 +52,7 @@ function Products() {
             image={product.thumbnail}
             title={product.title}
             price={product.price}
+            id={product.id}
           />
         ))}
       </div>
