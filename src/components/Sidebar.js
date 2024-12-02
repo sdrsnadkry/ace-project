@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 function Sidebar(props) {
   return (
     <div
@@ -14,12 +16,18 @@ function Sidebar(props) {
         {props.sidebarOpen ? "Close" : "Open"} Menu
       </button>
       <nav className="p-4 space-y-4">
-        <a href="/" className="block">
-          Home
-        </a>
-        <a href="/home" className="block">
+        <Link href="/" className="block">
+          Home Page
+        </Link>
+        <Link href="/dashboard" className="block">
           Dashboard
-        </a>
+        </Link>
+        <Link href="/dashboard/products" className="block">
+          Products
+        </Link>
+        <Link href="/dashboard/users" className="block">
+          Users
+        </Link>
         {/* Add more links as needed */}
       </nav>
     </div>

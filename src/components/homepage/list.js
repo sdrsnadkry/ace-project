@@ -42,7 +42,7 @@ function List() {
       Mobile phone list
       <ul className="bg-slate-300">
         {elements.map((ele) => (
-          <li>{ele}</li>
+          <li key={ele}>{ele}</li>
         ))}
       </ul>
       <div className="mt-10">
