@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Product from "./_components/product";
 import Loader from "./_components/loader";
+import Slider from "@/components/slider";
 
 function Products() {
   const [productList, setProductList] = useState([]);
@@ -24,13 +25,18 @@ function Products() {
     prod.title?.toLowerCase()?.includes(inputValue.toLowerCase())
   );
 
-  console.log(filteredProduct);
+  const images = filteredProduct.map((product) => {
+    return {
+      image: product.thumbnail,
+      title: product.title
+    }
+  });
 
   return (
     <div>
       <h1 className="text-2xl text-center">Products List</h1>
 
-      <p></p>
+      <Slider images={images} />
 
       <div className="flex items-center justify-center">
         <input

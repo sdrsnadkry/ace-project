@@ -1,5 +1,13 @@
-function Home(){
-  return <h1>Hello from dashboard</h1>
+"use client";
+
+import Slider from "@/components/slider";
+
+function Home() {
+  return (
+    <div className="w-[90%]">
+      
+    </div>
+  );
 }
 
-export default Home
+export default Home;
