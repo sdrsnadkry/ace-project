@@ -16,18 +16,23 @@ function Login() {
   const [isPwdVisible, setIsPwdVisible] = useState(false);
 
   const checkLoggedInUser = (email, password) => {
-    if (email === "admin@ecom.com" && password === "password") {
-      const token = "asdasd123123asdhajkdskjdhfiushdfi";
-      return token;
-    } else {
-      throw Error("Not valid user");
-    }
+    return new Promise((resolve, reject) => {
+      if (email === "admin@ecom.com" && password === "password") {
+        const token = "asdasd123123asdhajkdskjdhfiushdfi";
+        resolve(token);
+      } else {
+        reject("Not valid user");
+      }
+    });
   };
 
-  function handleSubmit() {
+  async function handleSubmit() {
     try {
-      const token = checkLoggedInUser(email, password);
-      localStorage.setItem("authToken", token);
+      const token = await checkLoggedInUser(email, password);
+      console.log(token);
+      // localStorage.setItem("authToken", token);
+
+      document.cookie = `authToken=${token};`;
       router.replace("/dashboard");
     } catch (error) {
       toast("Invalid credentials");
