@@ -12,9 +12,7 @@ const CategoryManager = () => {
 
   const handleFetchCategories = async () => {
     try {
-      const response = await axios.get(
-        "https://tp.api.internal.webpoint.io/api/categories"
-      );
+      const response = await axios.get("http://localhost:8000/api/categories");
 
       setCategories(response?.data?.categories);
     } catch (error) {}
@@ -41,14 +39,18 @@ const CategoryManager = () => {
   };
 
   const handleSaveCategory = async () => {
-    console.log(currentCategory, "asd");
-
     try {
-      const response = await axios.post(
-        "https://tp.api.internal.webpoint.io/api/categories",
-        currentCategory
-      );
-
+      if (isEditMode) {
+        const response = await axios.put(
+          "http://localhost:8000/api/categories/" + currentCategory?._id,
+          currentCategory
+        );
+      } else {
+        const response = await axios.post(
+          "http://localhost:8000/api/categories",
+          currentCategory
+        );
+      }
       handleFetchCategories();
 
       console.log(response);
@@ -57,7 +59,13 @@ const CategoryManager = () => {
     handleCloseModal();
   };
 
-  const handleDeleteCategory = (id) => {
+  const handleDeleteCategory = async (category) => {
+    try {
+      await axios.delete(
+        "http://localhost:8000/api/categories/" + category._id
+      );
+      handleFetchCategories();
+    } catch (error) {}
   };
 
   return (
@@ -91,7 +99,7 @@ const CategoryManager = () => {
               </button>
               <button
                 className="px-3 py-1 text-white bg-red-500 rounded"
-                onClick={() => handleDeleteCategory(category.id)}
+                onClick={() => handleDeleteCategory(category)}
               >
                 Delete
               </button>
@@ -138,11 +146,11 @@ const CategoryManager = () => {
               <label className="block text-gray-700">Description</label>
               <textarea
                 className="w-full px-3 py-2 mt-1 border rounded"
-                value={currentCategory.desc || ""}
+                value={currentCategory.description || ""}
                 onChange={(e) =>
                   setCurrentCategory((prev) => ({
                     ...prev,
-                    desc: e.target.value,
+                    description: e.target.value,
                   }))
                 }
               ></textarea>
