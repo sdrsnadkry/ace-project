@@ -21,9 +21,9 @@ function Register() {
   }
 
   return (
-    <div className="bg-slate-400 h-screen flex items-center justify-center">
+    <div className="flex items-center justify-center h-screen bg-slate-400">
       <div className="bg-white w-[50%] p-5 rounded-lg max-h-[90%] overflow-scroll">
-        <h1 className="text-center text-2xl">Registration Form</h1>
+        <h1 className="text-2xl text-center">Registration Form</h1>
 
         {/* form elements */}
         <form
@@ -45,7 +45,7 @@ function Register() {
               onChange={(event) => {
                 setName(event.target.value);
               }}
-              className="border mt-2 w-full border-slate-800 p-2"
+              className="w-full p-2 mt-2 border border-slate-800"
             />
           </div>
           <div className="my-5">
@@ -55,7 +55,7 @@ function Register() {
             <input
               type="email"
               required
-              className="border mt-2 w-full border-slate-800 p-2"
+              className="w-full p-2 mt-2 border border-slate-800"
             />
           </div>
           <div className="my-5">
@@ -64,7 +64,7 @@ function Register() {
             </label>
             <input
               type="number"
-              className="border mt-2 w-full border-slate-800 p-2"
+              className="w-full p-2 mt-2 border border-slate-800"
             />
           </div>
           <div className="my-5">
@@ -73,7 +73,7 @@ function Register() {
             </label>
             <input
               type="text"
-              className="border mt-2 w-full border-slate-800 p-2"
+              className="w-full p-2 mt-2 border border-slate-800"
             />
           </div>
           <Country
@@ -101,7 +101,7 @@ function Register() {
                     setGender("male");
                   }}
                   id="male"
-                  className="border ml-2 border-slate-800 p-2"
+                  className="p-2 ml-2 border border-slate-800"
                 />
               </div>
               <div className="ml-3">
@@ -116,7 +116,7 @@ function Register() {
                   onChange={(event) => {
                     setGender("female");
                   }}
-                  className="border ml-2  border-slate-800 p-2"
+                  className="p-2 ml-2 border border-slate-800"
                 />
               </div>
             </div>
@@ -125,11 +125,11 @@ function Register() {
             <label htmlFor="" className="block">
               Password
             </label>
-            <div className="bg-red-300 relative mt-2">
+            <div className="relative mt-2 bg-red-300">
               <input
                 required
                 type={isPwdVisible ? "text" : "password"}
-                className="border  w-full border-slate-800 p-2"
+                className="w-full p-2 border border-slate-800"
               />
               <button
                 className="absolute right-2 bottom-2"
@@ -143,7 +143,7 @@ function Register() {
           </div>
 
           <button
-            className="bg-blue-800 text-white px-10 py-2 rounded-md"
+            className="px-10 py-2 text-white bg-blue-800 rounded-md"
             // onClick={handleSubmit}
             type="submit"
           >

@@ -12,7 +12,7 @@ const CategoryManager = () => {
 
   const handleFetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/categories");
+      const response = await axios.get("https://tp.api.internal.webpoint.io/api/categories");
 
       setCategories(response?.data?.categories);
     } catch (error) {}
@@ -42,12 +42,12 @@ const CategoryManager = () => {
     try {
       if (isEditMode) {
         const response = await axios.put(
-          "http://localhost:8000/api/categories/" + currentCategory?._id,
+          "https://tp.api.internal.webpoint.io/api/categories/" + currentCategory?._id,
           currentCategory
         );
       } else {
         const response = await axios.post(
-          "http://localhost:8000/api/categories",
+          "https://tp.api.internal.webpoint.io/api/categories",
           currentCategory
         );
       }
@@ -62,7 +62,7 @@ const CategoryManager = () => {
   const handleDeleteCategory = async (category) => {
     try {
       await axios.delete(
-        "http://localhost:8000/api/categories/" + category._id
+        "https://tp.api.internal.webpoint.io/api/categories/" + category._id
       );
       handleFetchCategories();
     } catch (error) {}
